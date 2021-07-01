@@ -16,14 +16,6 @@ export function removeCar(car: ICar) {
     return actionDispatch(action)
 }
 
-export function moveToInactive(car: ICar) {
-    const action: CarAction = {
-        type: actionTypes.MOVE_TO_INACTIVE,
-        car
-    }
-    return actionDispatch(action)
-}
-
 export function actionDispatch(action: CarAction) {
     return (dispatch: DispatchType) => {
         dispatch(action)

@@ -40,8 +40,6 @@ const reducer = (state: CarState = initialState, action: CarAction):CarState => 
                 ...state,
                 cars: updatedCars
             }
-        // case actionTypes.MOVE_TO_INACTIVE:
-            //TODO: реализовать move to inactive
     }
     return state
 }
