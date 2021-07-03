@@ -28,7 +28,7 @@ const AddCarForm: React.FC<AddCarProps> = (props) => {
 
     return(
         <div>
-            <Button className='btn btn-success' onClick={toggle}>test авто</Button>
+            <Button className='btn btn-success' onClick={toggle}>Запись авто</Button>
             <Modal isOpen={modal} toggle={toggle} className=''>
                 <ModalHeader toggle={toggle}>Запись автомобиля на ТО</ModalHeader>
                 <ModalBody>

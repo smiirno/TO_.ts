@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes'
-import moment from 'moment';
 
 const initialState: CarState = {
     cars: [
