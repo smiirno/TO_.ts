@@ -32,6 +32,17 @@ const App: React.FC = () => {
         }
     })
 
+    const sortByDate = (list: ICar[]):ICar[] => {
+        list.sort((a:ICar, b:ICar) => {
+            return Date.parse(a.date) - Date.parse(b.date);
+        })
+
+        return list
+    }
+
+    const sortedActiveList:ICar[] = sortByDate(activeList)
+    const sortedInactiveList:ICar[] = sortByDate(inactiveList)
+
     return (
         <div>
             <NavbarComponent />
@@ -39,11 +50,11 @@ const App: React.FC = () => {
                 <Router>
                     <div>
                         <Route exact path="/">
-                            <CarList Cars={activeList} Title='Предстоящие ТО' removeCar={removeCar}/>
+                            <CarList Cars={sortedActiveList} Title='Предстоящие ТО' removeCar={removeCar}/>
                             <AddCarForm saveCar={saveCar}/>
                         </Route>
                         <Route path="/inactive">
-                            <CarList Cars={inactiveList} Title='Выполненные ТО'removeCar={removeCar}/>
+                            <CarList Cars={sortedInactiveList} Title='Выполненные ТО'removeCar={removeCar}/>
                         </Route>
                     </div>
                 </Router>

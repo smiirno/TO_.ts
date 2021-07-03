@@ -13,6 +13,12 @@ const AddCarForm: React.FC<AddCarProps> = (props) => {
 
     const toggle = () => setModal(!modal);
 
+    function convertDate(inputFormat:string) {
+        function pad(s:number) { return (s < 10) ? '0' + s : s; }
+        let d = new Date(inputFormat)
+        return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('.')
+    }
+
     const changeHandler = (event: React.FormEvent<HTMLInputElement>) => {
         setCar({
             ...car,
@@ -28,7 +34,7 @@ const AddCarForm: React.FC<AddCarProps> = (props) => {
 
     return(
         <div>
-            <Button className='btn btn-success' onClick={toggle}>Запись авто</Button>
+            <Button className='btn btn-success' onClick={toggle}>test авто</Button>
             <Modal isOpen={modal} toggle={toggle} className=''>
                 <ModalHeader toggle={toggle}>Запись автомобиля на ТО</ModalHeader>
                 <ModalBody>
