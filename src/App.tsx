@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, shallowEqual, useDispatch } from "react-redux"
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import {Dispatch} from "react";
-import {addCar, removeCar} from "./Store/actionCreators";
+import {addCar, removeCar, moveToInactive} from "./Store/actionCreators";
 import AddCarForm from "./Components/AddCarForm";
 import NavbarComponent from "./Components/Navbar";
 import CarList from "./Components/CarList";
@@ -50,11 +50,15 @@ const App: React.FC = () => {
                 <Router>
                     <div>
                         <Route exact path="/">
-                            <CarList Cars={sortedActiveList} Title='Предстоящие ТО' removeCar={removeCar}/>
+                            <CarList Cars={sortedActiveList} removeCar={removeCar} moveToInactive={moveToInactive}
+                                     Title='Предстоящие ТО' BtnName='Выполнено'/>
+                            {/*<CarList Cars={sortedInactiveList} removeCar={removeCar} moveToInactive={moveToInactive} */}
+                            {/*         Title='Предстоящие ТО' BtnName='В предстоящие ТО'/>*/}
                             <AddCarForm saveCar={saveCar}/>
                         </Route>
                         <Route path="/inactive">
-                            <CarList Cars={sortedInactiveList} Title='Выполненные ТО'removeCar={removeCar}/>
+                            <CarList Cars={sortedInactiveList} removeCar={removeCar} moveToInactive={moveToInactive}
+                                     Title='Предстоящие ТО' BtnName={'В предстоящие ТО'}/>
                         </Route>
                     </div>
                 </Router>

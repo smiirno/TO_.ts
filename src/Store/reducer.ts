@@ -40,6 +40,21 @@ const reducer = (state: CarState = initialState, action: CarAction):CarState => 
                 ...state,
                 cars: updatedCars
             }
+        case actionTypes.MOVE_TO_INACTIVE:
+            const indexOfCurrentCar = state.cars.indexOf(action.car)
+            state.cars.splice(indexOfCurrentCar, 1)
+            const movedCar = {
+                id: action.car.id,
+                isActive: !action.car.isActive,
+                brand: action.car.brand,
+                model: action.car.model,
+                carNumber: action.car.carNumber,
+                date: action.car.date
+            }
+            return {
+                ...state,
+                cars: state.cars.concat(movedCar)
+            }
     }
     return state
 }

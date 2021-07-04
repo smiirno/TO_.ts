@@ -67,6 +67,13 @@ const AddCarForm: React.FC<AddCarProps> = (props) => {
         event.preventDefault()
         props.saveCar(car)
         setCar([])
+        setFormValid(false)
+        setBrandError('Поле не может быть пустым')
+        setBrandDirty(false)
+        setModelError('Поле не может быть пустым')
+        setModelDirty(false)
+        setCarNumberError('Поле не может быть пустым')
+        setCarNumberDirty(false)
     }
 
     return(

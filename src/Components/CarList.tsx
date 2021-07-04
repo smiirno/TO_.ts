@@ -1,11 +1,13 @@
 import React, {Dispatch} from "react";
 import {useDispatch} from "react-redux";
-import {removeCar} from "../Store/actionCreators";
+import {moveToInactive, removeCar} from "../Store/actionCreators";
 
 type CarListProps = {
     Cars: ICar[]
     Title: string
+    BtnName: string
     removeCar: (car: ICar) => void
+    moveToInactive: (car: ICar) => void
 }
 
 const CarList: React.FC<CarListProps> = (props) => {
@@ -15,6 +17,11 @@ const CarList: React.FC<CarListProps> = (props) => {
     const deleteCar = React.useCallback(
         (car: ICar) => dispatch(removeCar(car)),
         [dispatch, removeCar]
+    )
+
+    const moveCar = React.useCallback(
+        (car: ICar) => dispatch(moveToInactive(car)),
+        [dispatch, moveToInactive]
     )
 
     return (
@@ -31,7 +38,7 @@ const CarList: React.FC<CarListProps> = (props) => {
                         <th scope="col">Автомобиль</th>
                         <th scope="col">Гос. номер</th>
                         <th scope="col">Дата записи</th>
-                        <th scope="col"></th>
+                        <th scope="col"/>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,6 +51,9 @@ const CarList: React.FC<CarListProps> = (props) => {
                                     <td>{car.carNumber}</td>
                                     <td>{car.date}</td>
                                     <td>
+                                        <button onClick={() => moveCar(car)} className='btn btn-sm btn-outline-success' style={{marginRight: '5px'}}>
+                                            {props.BtnName}
+                                        </button>
                                         <button onClick={() => deleteCar(car)} className='btn btn-sm btn-outline-secondary'>Удалить</button>
                                     </td>
                                 </tr>

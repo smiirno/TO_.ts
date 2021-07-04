@@ -1,12 +1,13 @@
 import React from "react";
 import {Dispatch} from "react";
 import {useDispatch} from "react-redux";
-import {removeCar} from "../Store/actionCreators";
+import {moveToInactive, removeCar} from "../Store/actionCreators";
 
 type CarProps = {
     Cars: ICar[]
     car: ICar
     removeCar: (car: ICar) => void
+    moveToInactive: (car: ICar) => void
 }
 
 export const Car: React.FC<CarProps> = (props) => {
@@ -18,6 +19,11 @@ export const Car: React.FC<CarProps> = (props) => {
         [dispatch, removeCar]
     )
 
+    const moveCar = React.useCallback(
+        (car: ICar) => dispatch(moveToInactive(car)),
+        [dispatch, moveToInactive]
+    )
+
     return(
         <React.Fragment>
             <tr>
@@ -27,6 +33,7 @@ export const Car: React.FC<CarProps> = (props) => {
                 <td>{props.car.date}</td>
                 <td>
                     <button onClick={() => deleteCar(props.car)} className='btn btn-sm btn-outline-secondary'>Удалить</button>
+                    <button onClick={() => moveCar(props.car)} className='btn btn-sm btn-outline-secondary'>Выполнено</button>
                 </td>
             </tr>
         </React.Fragment>
