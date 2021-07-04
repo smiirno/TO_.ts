@@ -8,17 +8,17 @@ export function addCar(car: ICar) {
     return actionDispatch(action)
 }
 
-export function removeCar(car: ICar) {
+export function moveToInactive(car: ICar) {
     const action: CarAction = {
-        type: actionTypes.REMOVE_CAR,
+        type: actionTypes.MOVE_TO_INACTIVE,
         car
     }
     return actionDispatch(action)
 }
 
-export function moveToInactive(car: ICar) {
+export function removeCar(car: ICar) {
     const action: CarAction = {
-        type: actionTypes.MOVE_TO_INACTIVE,
+        type: actionTypes.REMOVE_CAR,
         car
     }
     return actionDispatch(action)
